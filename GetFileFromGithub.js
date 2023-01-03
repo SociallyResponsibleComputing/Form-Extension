@@ -34,6 +34,7 @@ function GetReadme() {
   }
   url = SFSU_DOCUMENT + '/readme'
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
-  Logger.info(decodeResponseBase64(gitResponse))
+  decodedResponse = decodeResponseBase64(gitResponse)
+  return decodedResponse
 }
 
