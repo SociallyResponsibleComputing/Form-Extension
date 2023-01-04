@@ -13,5 +13,8 @@ function onSubmit(e) {
     }
     Logger.log(responseDict)
     Logger.log(responseDict['Title of File'])
-    Logger.log(decodeBase64(responseDict['Submit Document'][0]))
+    let fileId = responseDict['Submit Document'][0]
+    let file = DriveApp.getFileById(fileId)
+    PutFile(file.getBlob())
+    return file.getName()
 }

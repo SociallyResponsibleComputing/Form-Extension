@@ -1,11 +1,15 @@
 
-function PutFile() {
-
+function PutFile(fileContents) {
   const headers = {
     'Authorization': `Bearer ${getGitToken()}`,
     "Content-Type": "application/vnd.github.v3+json",
   }
-  const blob = Utilities.newBlob('sweeeeeeetness')
+
+  const blob = fileContents
+  Logger.Log("Type of file: " + typeof(fileContents))
+  if (typeof fileContents != Blob) {
+    blob = Utilities.newBlob(fileContents)
+  }
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
     "message": "testing commit",
