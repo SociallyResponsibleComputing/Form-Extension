@@ -18,7 +18,6 @@ function onSubmit(e) {
     Logger.log('Document ID: ' + fileId)
 
     let file = DriveApp.getFileById(fileId)
-
-    //PutFile(file.getBlob())
+    PutFile(file)
     return `fileId: ${fileId}, fileName: ${file.getName()}`
 }
