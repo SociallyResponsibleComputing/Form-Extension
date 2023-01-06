@@ -3,7 +3,8 @@
 /* Parameters:
   file: the file object not the ID
 */
-function PutFile(file) {
+function PutFile(fileId) {
+  const file = DriveApp.getFileById(fileId)
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
@@ -20,7 +21,7 @@ function PutFile(file) {
         'payload': JSON.stringify(bodyObj),
         //"muteHttpExceptions" : true,
     }
-    const URL = `https://api.github.com/repos/alexhappycode/SFSU_document_organizer_test/contents/${file.getName()}`
+    const URL = `${SFSU_DOCUMENT}/contents/${file.getName()}`
     try {
       UrlFetchApp.fetch(URL, options);
     } catch (err) {
@@ -48,4 +49,8 @@ function PutString(inputStr) {
     }
     const URL = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/contents/test.txt'
     UrlFetchApp.fetch(URL, options);
+}
+
+function putJson(fileId) {
+
 }

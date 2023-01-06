@@ -1,1 +1,1 @@
-const SFSU_DOCUMENT = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer'
+const SFSU_DOCUMENT = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/docs/document_metadata'
