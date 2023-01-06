@@ -4,11 +4,10 @@
   file: the file object not the ID
 */
 function PutFile(file) {
-  Logger.log(`printing file: ${file}`)
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
-    "message": "testing commit",
+    "message": "Pushed file from GAS",
     "content": base64Str
 }
   const headers = {
@@ -22,10 +21,10 @@ function PutFile(file) {
         //"muteHttpExceptions" : true,
     }
     const URL = `https://api.github.com/repos/alexhappycode/SFSU_document_organizer_test/contents/${file.getName()}`
-    Logger.log(`URL: ${URL}`)
     try {
       UrlFetchApp.fetch(URL, options);
     } catch (err) {
+      Logger.log(`URL: ${URL}`)
       Logger.log('Error! File probably exists already')
     }
 }

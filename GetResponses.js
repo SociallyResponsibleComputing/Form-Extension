@@ -12,11 +12,7 @@ function onSubmit(e) {
         responseDict[question] = answer;
     }
     Logger.log(`response Dict ${JSON.stringify(responseDict)}`)
-    Logger.log(responseDict)
     let fileId = responseDict['Submit Document'][0]
-    //Logger.log('Document Obj:', responseDict['Submit Document'])
-    Logger.log('Document ID: ' + fileId)
-
     let file = DriveApp.getFileById(fileId)
     PutFile(file)
     return `fileId: ${fileId}, fileName: ${file.getName()}`
