@@ -22,7 +22,7 @@ function putFile(response) {
         'payload': JSON.stringify(bodyObj),
         //"muteHttpExceptions" : true,
     }
-    const URL = `${SFSU_DOCUMENT}/contents/${file.getName()}`
+    const URL = `${SFSU_DOCUMENTS}/contents/${file.getName()}`
     try {
       UrlFetchApp.fetch(URL, options);
     } catch (err) {
