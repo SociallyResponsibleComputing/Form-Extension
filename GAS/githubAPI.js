@@ -1,9 +1,10 @@
 
 
 /* Parameters:
-  file: the file object not the ID
+  file: the file object
 */
-function PutFile(fileId) {
+function putFile(response) {
+  let fileId = response['Submit Document'][0]
   const file = DriveApp.getFileById(fileId)
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
@@ -51,6 +52,9 @@ function PutString(inputStr) {
     UrlFetchApp.fetch(URL, options);
 }
 
-function putJson(fileId) {
+/* Parameters:
+  file: the file object
+*/
+function putJson(json) {
 
 }

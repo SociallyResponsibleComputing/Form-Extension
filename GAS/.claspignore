@@ -1,3 +1,4 @@
 ignored.js
 **/node_modules/**
 .clasprc.json
+.prettierrc.js
