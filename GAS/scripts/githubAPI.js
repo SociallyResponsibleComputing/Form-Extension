@@ -1,9 +1,8 @@
 
-
 /* Parameters:
   file: the file object not the ID
 */
-function PutFile(file) {
+function putFile(file) {
   Logger.log(`printing file: ${file}`)
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
@@ -21,16 +20,17 @@ function PutFile(file) {
         'payload': JSON.stringify(bodyObj),
         //"muteHttpExceptions" : true,
     }
-    const URL = `https://api.github.com/repos/alexhappycode/SFSU_document_organizer_test/contents/${file.getName()}`
+    const URL = `${REPO_DOCUMENTS}/${file.getName()}`
     Logger.log(`URL: ${URL}`)
     try {
       UrlFetchApp.fetch(URL, options);
     } catch (err) {
+      Logger.log(err)
       Logger.log('Error! File probably exists already')
     }
 }
 
-function PutString(inputStr) {
+function putString(inputStr) {
   let blob = Utilities.newBlob(inputStr)
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
@@ -49,4 +49,8 @@ function PutString(inputStr) {
     }
     const URL = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/contents/test.txt'
     UrlFetchApp.fetch(URL, options);
+}
+
+function putJson() {
+
 }
