@@ -1,11 +1,10 @@
 
 
 /* Parameters:
-  file: the file object
+  file: the file object not the ID
 */
-function putFile(response) {
-  let fileId = response['Submit Document'][0]
-  const file = DriveApp.getFileById(fileId)
+function PutFile(file) {
+  Logger.log(`printing file: ${file}`)
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
@@ -22,11 +21,11 @@ function putFile(response) {
         'payload': JSON.stringify(bodyObj),
         //"muteHttpExceptions" : true,
     }
-    const URL = `${SFSU_DOCUMENTS}/contents/${file.getName()}`
+    const URL = `https://api.github.com/repos/alexhappycode/SFSU_document_organizer_test/contents/${file.getName()}`
+    Logger.log(`URL: ${URL}`)
     try {
       UrlFetchApp.fetch(URL, options);
     } catch (err) {
-      Logger.log(`URL: ${URL}`)
       Logger.log('Error! File probably exists already')
     }
 }
@@ -50,11 +49,4 @@ function PutString(inputStr) {
     }
     const URL = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/contents/test.txt'
     UrlFetchApp.fetch(URL, options);
-}
-
-/* Parameters:
-  file: the file object
-*/
-function putJson(json) {
-
 }
