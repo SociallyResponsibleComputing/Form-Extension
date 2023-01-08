@@ -47,7 +47,7 @@ function putString(inputStr) {
         'payload': JSON.stringify(bodyObj),
         //"muteHttpExceptions" : true,
     }
-    const URL = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/contents/test.txt'
+    const URL = `${REPO_DOCUMENTS}/test.txt`
     UrlFetchApp.fetch(URL, options);
 }
 

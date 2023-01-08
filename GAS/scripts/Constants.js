@@ -1,2 +1,5 @@
-const REPO_DOCUMENTS = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer/docs/documents'
-const ROOT_REPO = 'https://api.github.com/repos/alexhappycode/SFSU_document_organizer'
+const API = 'https://api.github.com/repos'
+const USER = 'alexhappycode'
+const REPO = 'Doc_Organizer_Website'
+const PATH = 'documents'
+const DOCUMENTS_URL = `${API}/${USER}/${REPO}/contents/${PATH}`
