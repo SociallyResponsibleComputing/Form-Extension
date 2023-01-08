@@ -63,16 +63,17 @@ function getFileFromGithub(filepath) {
   var urlFetchOptions = {
   "method": "GET",
   "headers": {
-    "Accept": "application/vnd.github.raw",
+    "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
     "Authorization": `Bearer ${getGitToken()}`
   },
   "muteHttpExceptions": false
   }
   const url = DOCUMENTS_URL + filepath
-  Logger.log('url ' + url)
+  //Logger.log('url ' + url)
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
-  return gitResponse
+
+  return `${gitResponse.toString()}`
 }
 
 /* Google script file associated with grabbing files
