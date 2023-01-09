@@ -35,16 +35,25 @@ function putFile(file) {
   if file does not exist, it will create the file,
   otherwise it will append to the file
 */
-function putString(path, inputStr) {
-  let sha = getSha(path)
-  return sha
-  
-  let blob = Utilities.newBlob(inputStr)
+function appendStringToFile(path, inputStr) {
+  let sha = null
+  let content = null
+  try {
+    let currentData = getFileFromGithub(path)
+    sha = currentData.sha
+    content = decodeBase64(currentData.content)
+    content = content.slice(0, -1);
+  } catch (e) {
+    Logger.log(e)
+    Logger.log("File does not exist, will create a new file")
+  }
+
+  let blob = Utilities.newBlob(`${content ?? '['}${content ? ',' : ''}${inputStr}]`)
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
     message: 'Put a string using GITHUB Rest API from doc_organizer',
     content: base64Str,
-    sha: 'TODO'
+    sha: sha
   }
   const headers = {
     Authorization: `Bearer ${getGitToken()}`,
@@ -57,8 +66,8 @@ function putString(path, inputStr) {
     //"muteHttpExceptions" : true,
   }
   const URL = `${DOCUMENTS_URL}/${path}`
-  return UrlFetchApp.fetch(URL, options)
-  //return URL
+  let response = UrlFetchApp.fetch(URL, options)
+  return JSON.parse(response.getContentText())
 }
 
 /* Google script file associated with grabbing files
@@ -79,7 +88,6 @@ function getFileFromGithub(filepath) {
   const url = `${DOCUMENTS_URL}/${filepath}`
   Logger.log('url ' + url)
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
-  //return `${gitResponse.getContentText()}, ${typeof(gitResponse.getContentText())}`
   return JSON.parse(gitResponse.getContentText())
 }
 
@@ -107,4 +115,6 @@ function getReadme() {
 }
 
 
-function putJson() {}
+function updateJsonFile(map) {
+  appendStringToFile('Document_Metadata.json', JSON.stringify(map))
+}

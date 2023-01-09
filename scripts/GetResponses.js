@@ -1,11 +1,3 @@
-function OnFormSubmit(e) {
-  const responseMap = createResponseMap()
-  const files = getFiles(responseMap)
-  putFile(files)
-  putJson()
-  return responseMap
-}
-
 function getFiles(response) {
   try {
     // TODO: Handle multiple files
