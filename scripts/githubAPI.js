@@ -48,7 +48,7 @@ function appendStringToFile(path, inputStr) {
     Logger.log("File does not exist, will create a new file")
   }
 
-  let blob = Utilities.newBlob(`${content ?? '['}${content ? ',' : ''}${inputStr}\n]`)
+  let blob = Utilities.newBlob(`${content ?? '[\n'}${content ? ',' : ''}${inputStr}\n]`)
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
     message: 'Put a string using GITHUB Rest API from doc_organizer',
