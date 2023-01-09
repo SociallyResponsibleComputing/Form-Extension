@@ -26,8 +26,3 @@ function decodeBase64(base64String) {
   const byteContent = Utilities.base64Decode(base64String, Utilities.Charset.UTF_8)
   return Utilities.newBlob(byteContent).getDataAsString();
 }
-
-function decodeBase64(targetStr) {
-  const byteContent = Utilities.base64Decode(targetStr, Utilities.Charset.UTF_8)
-  return Utilities.newBlob(byteContent).getDataAsString();
-}
