@@ -31,13 +31,20 @@ function putFile(file) {
 
 /* Parameters:
   inputStr: The string to add to file
+
+  if file does not exist, it will create the file,
+  otherwise it will append to the file
 */
-function putString(inputStr) {
+function putString(path, inputStr) {
+  let sha = getSha(path)
+  return sha
+  
   let blob = Utilities.newBlob(inputStr)
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
     message: 'Put a string using GITHUB Rest API from doc_organizer',
     content: base64Str,
+    sha: 'TODO'
   }
   const headers = {
     Authorization: `Bearer ${getGitToken()}`,
@@ -49,7 +56,7 @@ function putString(inputStr) {
     payload: JSON.stringify(bodyObj),
     //"muteHttpExceptions" : true,
   }
-  const URL = `${DOCUMENTS_URL}/test.txt`
+  const URL = `${DOCUMENTS_URL}/${path}`
   return UrlFetchApp.fetch(URL, options)
   //return URL
 }
@@ -69,11 +76,15 @@ function getFileFromGithub(filepath) {
   },
   "muteHttpExceptions": false
   }
-  const url = DOCUMENTS_URL + filepath
-  //Logger.log('url ' + url)
+  const url = `${DOCUMENTS_URL}/${filepath}`
+  Logger.log('url ' + url)
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
+  //return `${gitResponse.getContentText()}, ${typeof(gitResponse.getContentText())}`
+  return JSON.parse(gitResponse.getContentText())
+}
 
-  return `${gitResponse.toString()}`
+function getSha (path) {
+  return getFileFromGithub(path).sha
 }
 
 /* Google script file associated with grabbing files
