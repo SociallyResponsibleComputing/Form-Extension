@@ -1,7 +1,7 @@
-function getFiles(response) {
+function getFiles(responseMap) {
   try {
     // TODO: Handle multiple files
-    let file = DriveApp.getFileById(response['Submit Document'][0])
+    let file = DriveApp.getFileById(responseMap['File Submission'][0])
     return file
   } catch (e) {
     Logger.log(e)
@@ -19,6 +19,11 @@ function createResponseMap() {
     let question = response[i].getItem().getTitle()
     let answer = response[i].getResponse()
     responseMap[question] = answer
+  }
+  try {
+    responseMap.filename = getFiles(responseMap).getName()
+  } catch (e) {
+    Logger.log(e)
   }
   return responseMap
 }
