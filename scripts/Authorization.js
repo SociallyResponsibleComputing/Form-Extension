@@ -10,6 +10,10 @@ function TokenUI(){
   .addToUi();
 } 
 
+function getGitToken() {
+  return PropertiesService.getUserProperties().getProperty('gh_access_token')
+}
+
 function setGithubAccessToken() {
   const ui = FormApp.getUi()
   var scriptValue = ui.prompt('Please provide your API key.' , ui.ButtonSet.OK);

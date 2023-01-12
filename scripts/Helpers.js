@@ -4,16 +4,6 @@ function printObj(obj) {
   }
 }
 
-function getGitToken() {
-  /*
-  PropertiesService.getScriptProperties().setProperty(
-    'gh_access_token',
-    'puttokenhere',
-  )
-  */
-  return PropertiesService.getUserProperties().getProperty('gh_access_token')
-}
-
 /* Parameters
   response: the whole fetch response
 */
