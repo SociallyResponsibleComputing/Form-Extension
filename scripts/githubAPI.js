@@ -63,7 +63,7 @@ function appendStringToFile(path, inputStr) {
     method: 'PUT',
     headers: headers,
     payload: JSON.stringify(bodyObj),
-    //"muteHttpExceptions" : true,
+    "muteHttpExceptions" : false,
   }
   const URL = `${DOCUMENTS_URL}/${path}`
   let response = UrlFetchApp.fetch(URL, options)
