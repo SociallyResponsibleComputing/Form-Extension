@@ -25,5 +25,6 @@ function createResponseMap() {
   } catch (e) {
     Logger.log(e)
   }
+  responseMap.date = Date.now()
   return responseMap
 }

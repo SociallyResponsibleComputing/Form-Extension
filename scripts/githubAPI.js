@@ -1,8 +1,44 @@
+
+function checkFileExists(filepath) {
+  Logger.log(`Checking if ${filepath} exists`)
+  var urlFetchOptions = {
+  "method": "GET",
+  "headers": {
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "Authorization": `Bearer ${getGitToken()}`
+  },
+  "muteHttpExceptions": false
+  }
+  const url = `${DOCUMENTS_URL}/${filepath}`
+  Logger.log('url ' + url)
+  let gitResponse
+  try {
+    gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
+  } catch (e) {
+    Logger.log(e)
+    Logger.log('error occured in checkFileExists')
+    return false
+  }
+  if (gitResponse.getResponseCode() == '200') {
+    Logger.log(gitResponse.getResponseCode())
+    return true
+  }
+  return false
+}
+
 /* Parameters:
   file: the file object not the ID
 */
 function putFile(file) {
   Logger.log(`printing file: ${file}`)
+  const root = file.getName()
+  let filename = root
+  let counter = 2
+  while(checkFileExists(filename)) {
+    filename = `${root}(${counter})`
+    counter++
+  }
   let blob = file.getBlob()
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
@@ -19,7 +55,7 @@ function putFile(file) {
     payload: JSON.stringify(bodyObj),
     //"muteHttpExceptions" : true,
   }
-  const URL = `${DOCUMENTS_URL}/${file.getName()}`
+  const URL = `${DOCUMENTS_URL}/${filename}`
   Logger.log(`URL: ${URL}`)
   try {
     UrlFetchApp.fetch(URL, options)
