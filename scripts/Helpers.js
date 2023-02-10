@@ -30,16 +30,22 @@ function getIdFromUrl(url) {
 }
 
 function downloadByUrl(url) {
+  if (!url) {
+    Logger.log('No url provided')
+    return
+  }
+
   let fileId = getIdFromUrl(url)
   Logger.log(`fileId: ${fileId}`)
   let file = undefined
   try {
-  file = DriveApp.getFileById(fileId)
+    file = DriveApp.getFileById(fileId)
   } catch (e) {
     Logger.log(e)
     Logger.log('File does not exist inside downloadByUrl')
     return
   }
 
+  Logger.log('putting url file')
   putFile(file)
 }
