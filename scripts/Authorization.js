@@ -11,7 +11,7 @@ function TokenUI(){
 } 
 
 function getGitToken() {
-  Logger.log(PropertiesService.getScriptProperties().getProperty('gh_access_token'))
+  // Logger.log(PropertiesService.getScriptProperties().getProperty('gh_access_token'))
   return PropertiesService.getScriptProperties().getProperty('gh_access_token')
 }
 

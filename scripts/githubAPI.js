@@ -1,6 +1,5 @@
 
 function checkFileExists(filepath) {
-  Logger.log(`Checking if ${filepath} exists`)
   var urlFetchOptions = {
   "method": "GET",
   "headers": {
@@ -11,17 +10,14 @@ function checkFileExists(filepath) {
   "muteHttpExceptions": false
   }
   const url = `${DOCUMENTS_URL}/${filepath}`
-  Logger.log('url ' + url)
   let gitResponse
   try {
     gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
   } catch (e) {
-    Logger.log(e)
-    Logger.log('error occured in checkFileExists')
+    Logger.log(`Found not taken filename: ${url}`)
     return false
   }
   if (gitResponse.getResponseCode() == '200') {
-    Logger.log(gitResponse.getResponseCode())
     return true
   }
   return false
@@ -31,7 +27,6 @@ function checkFileExists(filepath) {
   file: the file object not the ID
 */
 function putFile(file) {
-  Logger.log(`printing file: ${file}`)
   const root = file.getName()
   let filename = root
   let counter = 1
@@ -122,7 +117,6 @@ function getFileFromGithub(filepath) {
   "muteHttpExceptions": false
   }
   const url = `${DOCUMENTS_URL}/${filepath}`
-  Logger.log('url ' + url)
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
   return JSON.parse(gitResponse.getContentText())
 }
@@ -134,7 +128,6 @@ function getSha (path) {
 /* Google script file associated with grabbing files
 from Github */
 function getReadme() {
-  Logger.log('git token,' + getGitToken())
   var urlFetchOptions = {
   "method": "GET",
   "headers": {
