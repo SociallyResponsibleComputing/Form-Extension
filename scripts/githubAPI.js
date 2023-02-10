@@ -34,7 +34,7 @@ function putFile(file) {
   Logger.log(`printing file: ${file}`)
   const root = file.getName()
   let filename = root
-  let counter = 2
+  let counter = 1
   while(checkFileExists(filename)) {
     filename = `${root}(${counter})`
     counter++
@@ -56,13 +56,13 @@ function putFile(file) {
     //"muteHttpExceptions" : true,
   }
   const URL = `${DOCUMENTS_URL}/${filename}`
-  Logger.log(`URL: ${URL}`)
   try {
     UrlFetchApp.fetch(URL, options)
   } catch (err) {
     Logger.log(err)
     Logger.log('Error! File probably exists already')
   }
+  return filename
 }
 
 /* Parameters:

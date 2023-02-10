@@ -1,6 +1,9 @@
 function OnFormSubmit(e) {
   const responseMap = createResponseMap()
-  putFile(getFiles(responseMap))
+  let [file1, file2] = getFiles(responseMap)
+  responseMap.filename = putFile(file1)
+  updateJsonFile(responseMap)
+  responseMap.filename = putFile(file2)
   updateJsonFile(responseMap)
   return responseMap
 }
