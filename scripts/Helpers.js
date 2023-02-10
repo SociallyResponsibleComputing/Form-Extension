@@ -24,3 +24,22 @@ function decodeBase64(base64String) {
   )
   return Utilities.newBlob(byteContent).getDataAsString()
 }
+
+function getIdFromUrl(url) {
+  return url.match(/[-\w]{25,}/)
+}
+
+function downloadByUrl(url) {
+  let fileId = getIdFromUrl(url)
+  Logger.log(`fileId: ${fileId}`)
+  let file = undefined
+  try {
+  file = DriveApp.getFileById(fileId)
+  } catch (e) {
+    Logger.log(e)
+    Logger.log('File does not exist inside downloadByUrl')
+    return
+  }
+
+  putFile(file)
+}
