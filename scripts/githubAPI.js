@@ -97,6 +97,7 @@ function appendStringToFile(path, inputStr) {
     payload: JSON.stringify(bodyObj),
     muteHttpExceptions: false,
   }
+  Logger.log(`getGitToken(): ${getGitToken()}`)
   const URL = `${DOCUMENTS_URL}/${path}`
   Logger.log('URL: ' + URL)
   let response = UrlFetchApp.fetch(URL, options)
