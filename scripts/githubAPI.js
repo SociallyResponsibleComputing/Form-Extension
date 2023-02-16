@@ -1,13 +1,12 @@
-
 function checkFileExists(filepath) {
   var urlFetchOptions = {
-  "method": "GET",
-  "headers": {
-    "Accept": "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": `Bearer ${getGitToken()}`
-  },
-  "muteHttpExceptions": false
+    method: 'GET',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      Authorization: `Bearer ${getGitToken()}`,
+    },
+    muteHttpExceptions: false,
   }
   const url = `${DOCUMENTS_URL}/${filepath}`
   let gitResponse
@@ -30,7 +29,7 @@ function putFile(file) {
   const root = file.getName()
   let filename = root
   let counter = 1
-  while(checkFileExists(filename)) {
+  while (checkFileExists(filename)) {
     filename = `${root}(${counter})`
     counter++
   }
@@ -73,18 +72,20 @@ function appendStringToFile(path, inputStr) {
     let currentData = getFileFromGithub(path)
     sha = currentData.sha
     content = decodeBase64(currentData.content)
-    content = content.slice(0, -1);
+    content = content.slice(0, -1)
   } catch (e) {
     Logger.log(e)
-    Logger.log("File does not exist, will create a new file")
+    Logger.log('File does not exist, will create a new file')
   }
 
-  let blob = Utilities.newBlob(`${content ?? '[\n'}${content ? ',' : ''}${inputStr}\n]`)
+  let blob = Utilities.newBlob(
+    `${content ?? '[\n'}${content ? ',' : ''}${inputStr}\n]`,
+  )
   const base64Str = Utilities.base64Encode(blob.getBytes())
   const bodyObj = {
     message: 'Put a string using GITHUB Rest API from doc_organizer',
     content: base64Str,
-    sha: sha
+    sha: sha,
   }
   const headers = {
     Authorization: `Bearer ${getGitToken()}`,
@@ -94,9 +95,10 @@ function appendStringToFile(path, inputStr) {
     method: 'PUT',
     headers: headers,
     payload: JSON.stringify(bodyObj),
-    "muteHttpExceptions" : false,
+    muteHttpExceptions: false,
   }
   const URL = `${DOCUMENTS_URL}/${path}`
+  Logger.log('URL: ' + URL)
   let response = UrlFetchApp.fetch(URL, options)
   return JSON.parse(response.getContentText())
 }
@@ -108,20 +110,20 @@ Params:
  */
 function getFileFromGithub(filepath) {
   var urlFetchOptions = {
-  "method": "GET",
-  "headers": {
-    "Accept": "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": `Bearer ${getGitToken()}`
-  },
-  "muteHttpExceptions": false
+    method: 'GET',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      Authorization: `Bearer ${getGitToken()}`,
+    },
+    muteHttpExceptions: false,
   }
   const url = `${DOCUMENTS_URL}/${filepath}`
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
   return JSON.parse(gitResponse.getContentText())
 }
 
-function getSha (path) {
+function getSha(path) {
   return getFileFromGithub(path).sha
 }
 
@@ -129,20 +131,19 @@ function getSha (path) {
 from Github */
 function getReadme() {
   var urlFetchOptions = {
-  "method": "GET",
-  "headers": {
-    "Accept": "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-    "Authorization": `Bearer ${getGitToken()}`
-  },
-  "muteHttpExceptions": false
+    method: 'GET',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      Authorization: `Bearer ${getGitToken()}`,
+    },
+    muteHttpExceptions: false,
   }
   url = DOCUMENTS_URL + '/readme'
   const gitResponse = UrlFetchApp.fetch(url, urlFetchOptions)
   decodedResponse = decodeResponseBase64(gitResponse)
   return decodedResponse
 }
-
 
 function updateJsonFile(map) {
   appendStringToFile('Document_Metadata.json', JSON.stringify(map))

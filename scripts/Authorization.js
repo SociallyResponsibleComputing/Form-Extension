@@ -13,7 +13,7 @@ function TokenUI() {
 function getGitToken() {
   // Logger.log(PropertiesService.getScriptProperties().getProperty('gh_access_token'))
   // return PropertiesService.getScriptProperties().getProperty('gh_access_token')
-  return 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
+  return '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'
 }
 
 function setGithubAccessToken() {
