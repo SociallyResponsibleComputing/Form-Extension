@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Google Form Extension&colon; Git File Upload</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="google-form-extension-git-file-upload">Google Form Extension: Git File Upload</h1>
+<p>This is a Google Forms extension that uploads documents to a repository on submission of a form. The user should fill out the form and include their documents and upon submission the information and the document will be version controlled on an external Github repository</p>
+<h2 id="google-form-extension-developer-setup-guide">Google Form Extension Developer Setup Guide</h2>
+<p>This guide will walk you through the setup process for creating a Google Form extension using Google Apps Script and CLASP. The extension allows you to add custom functionality and automation to your Google Forms.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before you begin, make sure you have the following prerequisites installed:</p>
+<ul>
+<li><strong>Node.js</strong>: You can download and install Node.js from the official website: <a href="https://nodejs.org">Node.js</a></li>
+<li><strong>CLASP</strong>: CLASP (Command Line Apps Script Projects) is a command-line tool used for managing Google Apps Script projects. Install CLASP globally by running the following command:<pre><code class="language-bash">npm install -g @google/clasp
+</code></pre>
+</li>
+<li>Google Clasp allows you to deploy the project as a google form extension</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<ol>
+<li>
+<p>Clone the project from github
+<code>git@github.com:SociallyResponsibleComputing/Form-Extension.git</code></p>
+</li>
+<li>
+<p>Login to <a href="https://console.cloud.google.com/apis/credentials?authuser=0&amp;project=socially-responsible-computing">https://console.cloud.google.com/apis/credentials?authuser=0&amp;project=socially-responsible-computing</a> and create new oAuth2.0 credentials:</p>
+</li>
+</ol>
+<p><img src="https://github.com/SociallyResponsibleComputing/Form-Extension/blob/4fc82d75e9f86d7ee06c30b7122550f5d21b81af/public/setup01.png" alt="image"></p>
+<p><em>Choose desktop Application when it asks you for the type of credentials</em></p>
+<ol start="3">
+<li>
+<p>Download the credentials as JSON and save it to the root directory of the project. Rename the credentials file to creds.json</p>
+</li>
+<li>
+<p>Inside the root directory there is a .clap.json file, make sure the root directory points to the path of your cloned directory</p>
+</li>
+<li>
+<p>Next login using the freshly downloaded creds.json <code>clasp login --creds creds.json</code></p>
+</li>
+</ol>
+<p>You should now be ready for development. Let's do a test to make sure everything is wokring</p>
+<h3 id="test-run">Test Run</h3>
+<ul>
+<li>Open a terminal inside the project and run 'clasp run HelloWorld' and you should see the following output: &quot;Hello World!&quot;</li>
+<li>If that succeeds, you have successfully setup your development environment</li>
+<li>Check the logs to verify that the code ran: <a href="https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/executions">https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/executions</a></li>
+</ul>
+<h2 id="important-commands">Important Commands</h2>
+<ul>
+<li><strong>clasp push</strong> -This pushes the code to the google apps script project which effectively deploys the code</li>
+<li><strong>clasp run &lt;function&gt;</strong> - This runs the code on the google apps script project. It is used for testing functions in the app prior to deplyment. You must specify a function to run as defined in the code</li>
+</ul>
+<h2 id="important-links">Important Links:</h2>
+<h3 id="this-is-the-link-to-the-form-where-the-code-is-deployed-to">This is the link to the form where the code is deployed to</h3>
+<p><a href="https://forms.gle/v9kitcKe45XMQ4SA6">https://forms.gle/v9kitcKe45XMQ4SA6</a></p>
+<h3 id="this-is-where-the-logs-are-viewable">This is where the logs are viewable</h3>
+<p><a href="https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/executions">https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/executions</a></p>
+<h3 id="this-is-where-the-deployed-code-resides">This is where the deployed code resides</h3>
+<p><a href="https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/edit?pli=1">https://script.google.com/u/0/home/projects/1EPqaSsc9UfkhVfQ_C6K4TjRY7PQYY0bvJq-37hcRZB2zg11DcwUzn4cP/edit?pli=1</a></p>
+<h3 id="this-is-where-you-create-oauth-20-credentials">This is where you create OAuth 2.0 credentials</h3>
+<p><a href="https://console.cloud.google.com/apis/credentials?authuser=0&amp;project=socially-responsible-computing">https://console.cloud.google.com/apis/credentials?authuser=0&amp;project=socially-responsible-computing</a></p>
+
+        
+        
+    </body>
+    </html>
