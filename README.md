@@ -2,6 +2,21 @@
 
 This is a Google Forms extension that uploads documents to a repository on submission of a form. The user should fill out the form and include their documents and upon submission the information and the document will be version controlled on an external Github repository
 
+## Table of Contents
+- [Google Form Extension: Git File Upload](#google-form-extension-git-file-upload)
+  - [Table of Contents](#table-of-contents)
+  - [Google Form Extension Developer Setup Guide](#google-form-extension-developer-setup-guide)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Test Run](#test-run)
+  - [Important Commands](#important-commands)
+  - [Important Links:](#important-links)
+    - [This is the link to the form where the code is deployed to](#this-is-the-link-to-the-form-where-the-code-is-deployed-to)
+    - [This is where the logs are viewable](#this-is-where-the-logs-are-viewable)
+    - [This is where the deployed code resides](#this-is-where-the-deployed-code-resides)
+    - [This is where you create OAuth 2.0 credentials](#this-is-where-you-create-oauth-20-credentials)
+
+
 ## Google Form Extension Developer Setup Guide
 
 This guide will walk you through the setup process for creating a Google Form extension using Google Apps Script and CLASP. The extension allows you to add custom functionality and automation to your Google Forms.
