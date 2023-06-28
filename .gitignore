@@ -1,5 +1,4 @@
 node_modules/
 .clasprc.json
-.clasp.json
 creds.json
 gh_access_token.txt

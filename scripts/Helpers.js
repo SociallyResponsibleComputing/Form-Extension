@@ -49,3 +49,8 @@ function downloadByUrl(url) {
   Logger.log('putting url file')
   putFile(file)
 }
+
+function HelloWorld() {
+  Logger.log('Hello World!')
+  return 'Hello World!'
+}
