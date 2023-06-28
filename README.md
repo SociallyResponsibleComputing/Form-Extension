@@ -39,7 +39,7 @@ Before you begin, make sure you have the following prerequisites installed:
 
 2.  Login to https://console.cloud.google.com/apis/credentials?authuser=0&project=socially-responsible-computing and create new oAuth2.0 credentials:
    
-![image](https://raw.githubusercontent.com/SociallyResponsibleComputing/Form-Extension/main/public/setup01.png?token=GHSAT0AAAAAACEPPLOHKKO2HP5MFCBQ4DTIZE4UBGA)
+![Image](public/setup01.png)
 
 *Choose desktop Application when it asks you for the type of credentials*
 
