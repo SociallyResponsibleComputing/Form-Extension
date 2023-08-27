@@ -5,7 +5,10 @@ This is a Google Forms extension that uploads documents to a repository on submi
 ## Table of Contents
 - [Google Form Extension: Git File Upload](#google-form-extension-git-file-upload)
   - [Table of Contents](#table-of-contents)
-  - [Google Form Extension Developer Setup Guide](#google-form-extension-developer-setup-guide)
+  - [Introduction to Google Form Extension: Git File Upload](#introduction-to-google-form-extension-git-file-upload)
+  - [Purpose:](#purpose)
+  - [Use Cases:](#use-cases)
+- [Developer Setup](#developer-setup)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Test Run](#test-run)
@@ -16,8 +19,28 @@ This is a Google Forms extension that uploads documents to a repository on submi
     - [This is where the deployed code resides](#this-is-where-the-deployed-code-resides)
     - [This is where you create OAuth 2.0 credentials](#this-is-where-you-create-oauth-20-credentials)
 
+## Introduction to Google Form Extension: Git File Upload
 
-## Google Form Extension Developer Setup Guide
+In today's digital age, with an increasing reliance on cloud-based systems, the amalgamation of form submissions and version control has become more important than ever. Google Forms is a prominent tool used by many to collect information, feedback, and other data types. On the other hand, Git, especially through platforms like GitHub, is the go-to solution for version control, enabling users to track changes, collaborate efficiently, and maintain a historic record of files. Bridging the gap between these two platforms is the "Google Form Extension: Git File Upload."
+
+## Purpose:
+
+The primary objective of the Google Form Extension: Git File Upload is to seamlessly integrate Google Forms and GitHub. This means that when a user submits a form containing documents or other file types, the information doesn't just get stored in the typical Google Sheets backend. Instead, it also gets uploaded to a designated GitHub repository, ensuring the files are version controlled. This addition not only augments the data integrity and recovery but also eases collaborative efforts, where team members can collectively view or work on submitted documents.
+
+## Use Cases:
+
+Educational Institutions: Professors can use this tool to collect assignments, ensuring that students' work is archived and accessible for future reference.
+Businesses: Companies can utilize the extension to receive and version-control project proposals, designs, or any document submissions from team members or external collaborators.
+Research: In fields where documentation is continuously updated, like tech or medical research, the extension can aid in maintaining a clear version history of contributions.
+Public Submissions: Any organization seeking public inputs, be it for feedback, design competitions, or content contributions, can use this extension to manage and archive the received data.
+Examples:
+
+Design Feedback: A company launching a new product line can create a form for internal teams to submit design feedback. When team members submit their feedback along with design files, every piece of feedback, along with the associated files, gets stored in a GitHub repository. This allows the design team to check the version history, understand the evolution based on feedback, and collaboratively improve the design.
+Course Assignments: In a coding course, students can submit their coding assignments through the form. The instructor can then review each student's submission on GitHub, track improvements over time, and even provide feedback directly on the platform.
+Document Verification: In scenarios where the public needs to submit identification documents for verification purposes, the extension ensures that every version of the submitted document is available, safeguarding against potential modifications or loss of data.
+In the sections that follow, you'll find a detailed developer setup guide that will assist you in integrating this functionality into your own Google Forms. It covers everything from prerequisites to a test run, ensuring you can leverage this powerful tool efficiently.
+
+# Developer Setup
 
 This guide will walk you through the setup process for creating a Google Form extension using Google Apps Script and CLASP. The extension allows you to add custom functionality and automation to your Google Forms.
 
